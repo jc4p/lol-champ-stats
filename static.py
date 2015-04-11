@@ -12,14 +12,14 @@ CHAMP_NAMES = ['Aatrox', 'Ahri', 'Akali', 'Alistar', 'Amumu', 'Anivia', 'Annie',
                'Urgot', 'Varus', 'Vayne', 'Veigar', 'Velkoz', 'Vi', 'Viktor', 'Vladimir', 'Volibear', 'Warwick', 
                'MonkeyKing', 'Xerath', 'XinZhao', 'Yasuo', 'Yorick' , 'Zac', 'Zed', 'Ziggs', 'Zilean', 'Zyra']
 
-BASE_ATTRS = { "map": "any",
-               "isGlobalForChampions": False,
+BASE_ATTRS = """{"map": "any",
+               "isGlobalForChampions": false,
                "blocks": [],
                "associatedChampions": [],
-               "priority": False,
+               "priority": false,
                "mode": "any",
-               "isGlobalForMaps": True,
+               "isGlobalForMaps": true,
                "associatedMaps": [],
                "type": "custom",
-               "sortrank": 1,
-             }
+               "sortrank": 1
+             }"""

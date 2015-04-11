@@ -28,7 +28,7 @@ def parse_champ(name):
     return True
         
 def get_base(name, role, version="5.6"):
-    data = BASE_ATTRS
+    data = json.loads(BASE_ATTRS)
     data['title'] = "{} {} {}".format(name, role, version)
     data['champion'] = name
     return data
@@ -65,7 +65,7 @@ def get_build(s):
 
 def get_skills_and_misc(s, role):
     first = {"type": "Trinkets // Skill Order (Frequent) - {}".format(s['frequent']['order'])}
-    second = {"type": "Potions and Elixirs // Skill Order (Highest) - {}".format(s['highest']['order'])}
+    second = {"type": "Potions // Skill Order (Highest) - {}".format(s['highest']['order'])}
 
     # Pink vision trinket, upgraded red trinket, upgraded blue trinket
     first['items'] = [{"count": 1, "id": "3362"}, {"count": 1, "id": "3364"}, {"count": 1, "id": "3363"}]
