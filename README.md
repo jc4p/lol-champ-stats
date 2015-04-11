@@ -5,13 +5,13 @@ Python scripts to generate League of Legends item sets from champion.gg data
 These scripts *scrape* that data from Champion.gg and generate [Custom Item Sets](http://na.leagueoflegends.com/en/news/game-updates/game-updates/customize-your-build-client-item-sets) from them.
 
 The item sets contain most played and highest win rate data for starting items, final item builds, and skill order.
-In addition, they have common wards and elixirs attached at the bottom, so you hopefully don't have to ever use something other than the custom set.
+In addition, they have common wards and elixirs listed at the end of the page. If you have any ideas of more things to add, please [open an issue](https://github.com/jc4p/lol-champ-stats/issues).
 
 ![Example Image](http://i.imgur.com/ITidkEA.jpg)
 
 # Usage (Easiest)
 
-Download Champions.zip from the releases tab and unzip into the Champions folder of your League of Legends installation. If you're on a Windows computer, this is probably `C:\Riot Games\League of Legends\Config\Champions`. 
+Download Champions.zip [from the releases tab](https://github.com/jc4p/lol-champ-stats/releases) and unzip into the Champions folder of your League of Legends installation. If you're on a Windows computer, this is probably `C:\Riot Games\League of Legends\Config\Champions`.
 
 # Usage (Manual)
 
