@@ -9,14 +9,17 @@ In addition, they have common wards and elixirs listed at the end of the page. I
 
 ![Example Image](http://i.imgur.com/ITidkEA.jpg)
 
-# Usage (Easiest)
+# Usage (Easy Way)
 
-Download Champions.zip [from the releases tab](https://github.com/jc4p/lol-champ-stats/releases) and unzip into the Champions folder of your League of Legends installation. If you're on a Windows computer, this is probably `C:\Riot Games\League of Legends\Config\Champions`.
+Download the newest Champions.zip [from the releases tab](https://github.com/jc4p/lol-champ-stats/releases) and unzip into the Champions folder of your League of Legends installation. If you're on a Windows computer, this is probably `C:\Riot Games\League of Legends\Config\Champions`.
 
-# Usage (Manual)
+# Usage (Manual Way)
 
-`python get.py` to scrape the newest data from Champion.gg and save them to a local file named 'cache'.
+> Note: This assumes you already have Python 2.x installed. If you are on Windows and haven't installed it before, you probably don't have it. You can download Python from https://www.python.org/downloads/ -- Please download the 2.7.x version, not the 3.x version.
 
-`python save.py` to process generated output from get.py and creates all item sets in a Champions directory.
+> This also assumes you have `pip` installed. If you don't, just run `easy_install pip` and you should be all set.
 
-Copy the contents of the Champions directory over to the folder described above.
+- First, we need to install the dependencies, you can do this with pip by running `pip install -r requirements.txt`  from a command prompt.
+- `python get.py` will scrape the newest data from Champion.gg and save them to a local file named 'cache'.
+- `python save.py` will process the output from get.py and create the item sets into a new directory called Champions.
+- Finally, copy the contents of the Champions directory over to the folder described above.
