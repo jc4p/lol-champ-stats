@@ -5,6 +5,8 @@ import os
 
 shelf = shelve.open("cache")
 
+patch = "5.7"
+
 def parse_champ(name):
     if name not in CHAMP_NAMES:
         return "Unable to find {}".format(name)
@@ -22,14 +24,14 @@ def parse_champ(name):
         data['blocks'] += get_build(champ[role]['build'])
         data['blocks'] += get_skills_and_misc(champ[role]['skills'], role)
         print "Saving {} {}".format(name, role)
-        with open("Champions/{}/Recommended/{}{}.json".format(name, role, "5_6"), "w+") as f:
+        with open("Champions/{}/Recommended/{}{}.json".format(name, role, patch.replace(".", "_")), "w+") as f:
             f.write(json.dumps(data))
 
     return True
         
-def get_base(name, role, version="5.6"):
+def get_base(name, role):
     data = json.loads(BASE_ATTRS)
-    data['title'] = "{} {} {}".format(name, role, version)
+    data['title'] = "{} {} {}".format(name, role, patch)
     data['champion'] = name
     return data
 
@@ -65,7 +67,7 @@ def get_build(s):
 
 def get_skills_and_misc(s, role):
     first = {"type": "Trinkets // Skill Order (Frequent) - {}".format(s['frequent']['order'])}
-    second = {"type": "Potions // Skill Order (Highest) - {}".format(s['highest']['order'])}
+    second = {"type": "Consumables // Skill Order (Highest) - {}".format(s['highest']['order'])}
 
     # Pink vision trinket, upgraded red trinket, upgraded blue trinket
     first['items'] = [{"count": 1, "id": "3362"}, {"count": 1, "id": "3364"}, {"count": 1, "id": "3363"}]
@@ -79,6 +81,9 @@ def get_skills_and_misc(s, role):
         second['items'].append({"count": 1, "id": "2138"})  # Elixir of Iron
     elif role == "ADC":
         second['items'].append({"count": 1, "id": "2140"})  # Elixir of Wrath
+
+    second['items'].append({"count": 1, "id": "2044"})  # Green ward
+    second['items'].append({"count": 1, "id": "2043"})  # Pink ward
 
     return [first, second]
 
