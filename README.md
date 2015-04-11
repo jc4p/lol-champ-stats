@@ -7,6 +7,8 @@ These scripts *scrape* that data from Champion.gg and generate [Custom Item Sets
 The item sets contain most played and highest win rate data for starting items, final item builds, and skill order.
 In addition, they have common wards and elixirs attached at the bottom, so you hopefully don't have to ever use something other than the custom set.
 
+![Example Image](http://i.imgur.com/ITidkEA.jpg)
+
 # Usage (Easiest)
 
 Download Champions.zip from the releases tab and unzip into the Champions folder of your League of Legends installation. If you're on a Windows computer, this is probably `C:\Riot Games\League of Legends\Config\Champions`. 
