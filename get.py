@@ -2,6 +2,7 @@ import requests
 import shelve
 from time import sleep
 from collections import defaultdict
+from collections import OrderedDict
 from bs4 import BeautifulSoup
 from static import *
 
@@ -78,22 +79,31 @@ def get_starters(column):
 
     mf_starters = parse_starters(column.select(".build-wrapper")[0])
     mf_winrate = column.select(".build-text")[0].stripped_strings.next()
-    data['frequent'] = {'items': mf_starters, 'win_rate': mf_winrate}
 
     hw_starters = parse_starters(column.select(".build-wrapper")[1])
     hw_winrate = column.select(".build-text")[1].stripped_strings.next()
+
+    #only add them both if they're not the same
+    mf_str = str(mf_starters)
+    hw_str = str(hw_starters)
+    
+    if mf_str != hw_str:
+        data['frequent'] = {'items': mf_starters, 'win_rate': mf_winrate}
+        
     data['highest'] = {'items': hw_starters, 'win_rate': hw_winrate}
 
     return data
 
 def parse_starters(el):
-    items = defaultdict(int)
+    # use OrderedDict so the items come back in the correct order
+    items = OrderedDict()
     for img in el.find_all('img'):
         src = img['src']
         src = src[src.rindex('/') + 1:]
         item_id = int(src[:src.index('.')])
-        items[item_id] += 1
-    return dict(items)
+        current = items.get(item_id, 0)
+        items[item_id] = current + 1
+    return items
 
 def get_build(column):
     data = {}
