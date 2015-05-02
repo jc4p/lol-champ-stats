@@ -5,7 +5,7 @@ import os
 
 shelf = shelve.open("cache")
 
-patch = "5.7"
+patch = "5.8"
 
 def parse_champ(name):
     if name not in CHAMP_NAMES:
