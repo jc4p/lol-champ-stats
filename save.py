@@ -5,7 +5,7 @@ import os
 
 shelf = shelve.open("cache")
 
-patch = "5.8"
+patch = "5.11"
 
 def parse_champ(name):
     if name not in CHAMP_NAMES:
@@ -20,8 +20,10 @@ def parse_champ(name):
 
     for role in champ.keys():
         data = get_base(name, role)
-        data['blocks'] += get_starters(champ[role]['starters'])
-        data['blocks'] += get_build(champ[role]['build'])
+        if 'starters' in champ[role]:
+            data['blocks'] += get_starters(champ[role]['starters'])
+        if 'build' in champ[role]:
+            data['blocks'] += get_build(champ[role]['build'])
         data['blocks'] += get_skills_and_misc(champ[role]['skills'], role)
         print "Saving {} {}".format(name, role)
         with open("Champions/{}/Recommended/{}{}.json".format(name, role, patch.replace(".", "_")), "w+") as f:
@@ -66,8 +68,8 @@ def get_build(s):
     return res
 
 def get_skills_and_misc(s, role):
-    first = {"type": "Trinkets // Skill Order (Frequent) - {}".format(s['frequent']['order'])}
-    second = {"type": "Consumables // Skill Order (Highest) - {}".format(s['highest']['order'])}
+    first = {"type": "Trinkets // Skill Order (Frequent) - {}".format(s['frequent']['order'] if 'frequent' in s else '')}
+    second = {"type": "Consumables // Skill Order (Highest) - {}".format(s['highest']['order'] if 'highest' in s else '')}
 
     # Pink vision trinket, upgraded red trinket, upgraded blue trinket
     first['items'] = [{"count": 1, "id": "3362"}, {"count": 1, "id": "3364"}, {"count": 1, "id": "3363"}]

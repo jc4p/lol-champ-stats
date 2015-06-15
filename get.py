@@ -41,14 +41,19 @@ def get_role(page):
     
     columns = page.select(".counter-column")
     data['skills'] = get_skills(columns[0])
-    data['starters'] = get_starters(columns[4])
-    data['build'] = get_build(columns[3])
+    if len(columns) > 4:
+        data['starters'] = get_starters(columns[4])
+    if len(columns) > 3:
+        data['build'] = get_build(columns[3])
     
     return data
 
 def get_skills(column):
     data = {}
     
+    if len(column.select(".skill-order")) == 0:
+        return data
+
     mf_skills = parse_skill_order(column.select(".skill-order")[0])
     mf_winrate = column.select(".build-text")[0].stripped_strings.next()
     data['frequent'] = {'order': mf_skills, 'win_rate': mf_winrate}
