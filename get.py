@@ -39,13 +39,10 @@ def get_champ(name):
 def get_role(page):
     data = {}
     
-    columns = page.select(".counter-column")
+    columns = page.select(".col-md-6")
     data['skills'] = get_skills(columns[0])
-    if len(columns) > 4:
-        data['starters'] = get_starters(columns[4])
-    if len(columns) > 3:
-        data['build'] = get_build(columns[3])
-    
+    data['starters'] = get_starters(columns[1].select(".col-md-5")[0])
+    data['build'] = get_build(columns[1].select(".col-md-7")[0])
     return data
 
 def get_skills(column):
